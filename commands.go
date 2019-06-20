@@ -1558,7 +1558,7 @@ func (c cmdable) XTrimApprox(key string, maxLen int64) *IntCmd {
 
 // Z represents sorted set member.
 type Z struct {
-	Score  float64
+	Score  int64
 	Member interface{}
 }
 

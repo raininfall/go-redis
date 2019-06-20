@@ -801,7 +801,7 @@ var _ = Describe("Commands", func() {
 		It("should ZScan", func() {
 			for i := 0; i < 1000; i++ {
 				err := client.ZAdd("myset", &redis.Z{
-					Score:  float64(i),
+					Score:  int64(i),
 					Member: fmt.Sprintf("member%d", i),
 				}).Err()
 				Expect(err).NotTo(HaveOccurred())
@@ -3319,12 +3319,12 @@ var _ = Describe("Commands", func() {
 		})
 
 		It("should ZScore", func() {
-			zAdd := client.ZAdd("zset", &redis.Z{Score: 1.001, Member: "one"})
+			zAdd := client.ZAdd("zset", &redis.Z{Score: 1, Member: "one"})
 			Expect(zAdd.Err()).NotTo(HaveOccurred())
 
 			zScore := client.ZScore("zset", "one")
 			Expect(zScore.Err()).NotTo(HaveOccurred())
-			Expect(zScore.Val()).To(Equal(float64(1.001)))
+			Expect(zScore.Val()).To(Equal(1))
 		})
 
 		It("should ZUnionStore", func() {

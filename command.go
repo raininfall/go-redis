@@ -1364,7 +1364,7 @@ func zSliceParser(rd *proto.Reader, n int64) (interface{}, error) {
 			return nil, err
 		}
 
-		z.Score, err = rd.ReadFloatReply()
+		z.Score, err = rd.ReadInt()
 		if err != nil {
 			return nil, err
 		}
@@ -1427,7 +1427,7 @@ func zWithKeyParser(rd *proto.Reader, n int64) (interface{}, error) {
 	if err != nil {
 		return nil, err
 	}
-	z.Score, err = rd.ReadFloatReply()
+	z.Score, err = rd.ReadInt()
 	if err != nil {
 		return nil, err
 	}
